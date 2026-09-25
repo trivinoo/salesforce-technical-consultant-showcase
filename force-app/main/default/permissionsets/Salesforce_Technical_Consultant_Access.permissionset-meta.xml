@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Grants access to Apex Classes, Triggers, and LWCs for the Technical Consultant Showcase solution.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Salesforce Technical Consultant Access</label>
+    <classAccesses>
+        <apexClass>OrderCreditCheckService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OrderTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IntegrationLogger</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+</PermissionSet>

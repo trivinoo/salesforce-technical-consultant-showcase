@@ -1,0 +1,16 @@
+# Salesforce DX / CLI
+.sfdx/
+.sf/
+.localdevserver/
+coverage/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+
+# OS / Temp
+.DS_Store
+Thumbs.db
+*.log
+node_modules/

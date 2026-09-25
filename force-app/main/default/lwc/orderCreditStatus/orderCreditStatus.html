@@ -1,0 +1,68 @@
+<template>
+    <lightning-card title="SAP Real-Time Credit Status" icon-name="standard:account_clearing">
+        <div class="slds-p-around_medium">
+            <template if:true={isLoading}>
+                <div class="slds-align_absolute-center slds-p-around_large">
+                    <lightning-spinner alternative-text="Checking SAP Credit API..." size="medium"></lightning-spinner>
+                    <span class="slds-m-left_small">Querying SAP Credit Master...</span>
+                </div>
+            </template>
+
+            <template if:false={isLoading}>
+                <!-- Status Banner -->
+                <template if:true={isBlocked}>
+                    <div class="slds-notify slds-notify_alert slds-alert_warning slds-m-bottom_medium" role="alert">
+                        <lightning-icon icon-name="utility:warning" variant="inverse" size="small" class="slds-m-right_x-small"></lightning-icon>
+                        <h2><strong>CREDIT HOLD DETECTED:</strong> Customer Account is blocked in SAP ERP.</h2>
+                    </div>
+                </template>
+
+                <template if:false={isBlocked}>
+                    <div class="slds-notify slds-notify_alert slds-theme_success slds-m-bottom_medium" role="alert">
+                        <lightning-icon icon-name="utility:success" variant="inverse" size="small" class="slds-m-right_x-small"></lightning-icon>
+                        <h2><strong>CREDIT APPROVED:</strong> Account is in good standing for order processing.</h2>
+                    </div>
+                </template>
+
+                <!-- Detailed Metrics Grid -->
+                <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-box slds-text-align_center slds-theme_shade">
+                            <div class="slds-text-title_caps">Credit Limit</div>
+                            <div class="slds-text-heading_medium slds-m-top_x-small">{creditLimitFormatted}</div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-box slds-text-align_center slds-theme_shade">
+                            <div class="slds-text-title_caps">Total Outstanding</div>
+                            <div class="slds-text-heading_medium slds-m-top_x-small">{outstandingFormatted}</div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-box slds-text-align_center slds-theme_shade">
+                            <div class="slds-text-title_caps">SAP Status</div>
+                            <div class="slds-text-heading_medium slds-m-top_x-small">{statusLabel}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Toolbar -->
+                <div class="slds-flex slds-grid_align-spread">
+                    <lightning-button 
+                        label="Re-Sync with SAP ERP" 
+                        icon-name="utility:refresh" 
+                        onclick={handleRefresh} 
+                        variant="neutral">
+                    </lightning-button>
+                    <lightning-button 
+                        label="Submit Exception Request" 
+                        icon-name="utility:send" 
+                        onclick={handleExceptionRequest} 
+                        variant="brand"
+                        disabled={isApproved}>
+                    </lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
