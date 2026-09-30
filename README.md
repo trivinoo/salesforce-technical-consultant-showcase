@@ -20,6 +20,18 @@ By pairing my **deep domain knowledge** (requirements gathering, business proces
 
 ---
 
+## 📖 Journeys & Technical Discoveries During Projects
+
+A living journal of architectural trade-offs, governor limit edge cases, integration gotchas, and technical breakthroughs uncovered while bridging functional requirements with Salesforce engineering.
+
+| Entry | Category | Technical Discovery & Problem Statement | Solution & Architectural Impact |
+| :--- | :--- | :--- | :--- |
+| [**01. SAP Callout Exception in Triggers**](docs/journeys/01-sap-credit-check-governor-limits.md) | Integration & Governor Limits | Attempting synchronous HTTP REST callout inside `before insert` trigger failed with `System.CalloutException: You have uncommitted work pending`. | Implemented asynchronous Queueable Apex (`Database.AllowsCallouts`) + Imperative LWC callout pattern. |
+| [**02. LWC Wire Service vs. Imperative Apex**](docs/journeys/02-lwc-wire-service-vs-imperative-apex.md) | LWC & UI Architecture | `@wire` adapter caches reactive data immutably; manual user button actions cannot invoke wire services directly. | Combined `@wire` for initial load with Imperative Apex & `refreshApex()` for user-triggered SAP re-sync. |
+| [**03. Flow vs. Apex Decision Matrix**](docs/journeys/03-declarative-flow-vs-apex-trigger-matrix.md) | Solution Architecture | Balancing Low-Code maintainability vs. Pro-Code performance for enterprise validation logic. | Standardized an 80/20 decision framework: Low-Code Flow for standard rules, Apex Trigger Handler for complex loops. |
+
+---
+
 ## 🏗️ Architecture & Business Case Study
 
 ### Business Problem

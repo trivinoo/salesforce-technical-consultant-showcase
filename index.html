@@ -29,6 +29,7 @@
         <nav class="tabs">
             <button class="tab-btn active" data-tab="manifesto">💼 Career Manifesto</button>
             <button class="tab-btn" data-tab="architecture">🏗️ Case Study & Code</button>
+            <button class="tab-btn" data-tab="journeys">📖 Journeys & Discoveries</button>
             <button class="tab-btn" data-tab="roadmap">⚡ 5-Phase Learning Path</button>
             <button class="tab-btn" data-tab="terminal">💻 SFDX CLI Simulator</button>
             <button class="tab-btn" data-tab="matrix">📊 Functional vs Technical Matrix</button>
@@ -84,6 +85,58 @@
         }
     }
 }</code></pre>
+        </section>
+
+        <!-- Panel: Journeys & Discoveries -->
+        <section id="journeys" class="panel">
+            <h2 class="card-title">📖 Project Journeys & Technical Discoveries</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                Real-world architectural trade-offs, governor limit edge cases, and technical breakthroughs experienced when delivering complex Salesforce implementations.
+            </p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <span class="badge" style="margin-bottom: 0.5rem; display: inline-block;">Integration & Limits</span>
+                    <h3 style="color: var(--sf-blue); font-size: 1.15rem; margin-bottom: 0.5rem;">01. SAP Callout Exception in Triggers</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                        Attempting synchronous REST callout in <code>before insert</code> trigger threw <code>System.CalloutException</code> due to uncommitted database work in transaction.
+                    </p>
+                    <p style="font-size: 0.85rem; color: var(--success-green); font-weight: 600;">
+                        ✔ Solution: Refactored to Queueable Apex with <code>Database.AllowsCallouts</code> + LWC Imperative Apex pattern.
+                    </p>
+                    <div style="margin-top: 1rem;">
+                        <a href="docs/journeys/01-sap-credit-check-governor-limits.md" target="_blank" style="color: var(--sf-blue); font-size: 0.85rem; font-weight: 600; text-decoration: none;">Read Full Journey Markdown →</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <span class="badge" style="margin-bottom: 0.5rem; display: inline-block;">LWC UI Architecture</span>
+                    <h3 style="color: var(--sf-blue); font-size: 1.15rem; margin-bottom: 0.5rem;">02. LWC Wire Service vs. Imperative Apex</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                        <code>@wire</code> caches reactive data immutably; manual user button actions cannot invoke wire services directly on demand.
+                    </p>
+                    <p style="font-size: 0.85rem; color: var(--success-green); font-weight: 600;">
+                        ✔ Solution: Combined <code>@wire</code> for initial page load with Imperative Apex & <code>refreshApex()</code> for on-demand user re-sync.
+                    </p>
+                    <div style="margin-top: 1rem;">
+                        <a href="docs/journeys/02-lwc-wire-service-vs-imperative-apex.md" target="_blank" style="color: var(--sf-blue); font-size: 0.85rem; font-weight: 600; text-decoration: none;">Read Full Journey Markdown →</a>
+                    </div>
+                </div>
+
+                <div class="card" style="grid-column: span 2;">
+                    <span class="badge" style="margin-bottom: 0.5rem; display: inline-block;">Solution Architecture</span>
+                    <h3 style="color: var(--sf-blue); font-size: 1.15rem; margin-bottom: 0.5rem;">03. The Declarative Flow vs. Apex Decision Framework</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                        Balancing Low-Code maintainability for admin teams against Pro-Code Apex bulk performance for complex order processing loops.
+                    </p>
+                    <p style="font-size: 0.85rem; color: var(--success-green); font-weight: 600;">
+                        ✔ Solution: 80/20 Rule — Low-Code Flow for standard rules, Apex Trigger Handler for complex map lookups & external integrations.
+                    </p>
+                    <div style="margin-top: 1rem;">
+                        <a href="docs/journeys/03-declarative-flow-vs-apex-trigger-matrix.md" target="_blank" style="color: var(--sf-blue); font-size: 0.85rem; font-weight: 600; text-decoration: none;">Read Full Journey Markdown →</a>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Panel 3: 5-Phase Roadmap -->
